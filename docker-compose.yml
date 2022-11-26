@@ -1,0 +1,62 @@
+version: "3.8"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - REACT_APP_REDUX_PERSIST_KEY=$REACT_APP_REDUX_PERSIST_KEY
+        - REACT_APP_CURRENCY=$REACT_APP_CURRENCY
+    container_name: fundebt-app
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/main?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
+      SPRING_DATASOURCE_USERNAME: $SPRING_DATASOURCE_USERNAME
+      SPRING_DATASOURCE_PASSWORD: $SPRING_DATASOURCE_PASSWORD
+      USER1_PASSWORD: $USER1_PASSWORD
+      USER2_PASSWORD: $USER2_PASSWORD
+      USER1_EMAIL: $USER1_EMAIL
+      USER2_EMAIL: $USER2_EMAIL
+      JWT_SECRET: $ACCESS_TOKEN_SECRET
+      ACCESS_TOKEN_EXPIRATION_DAYS: $ACCESS_TOKEN_EXPIRATION_DAYS
+      ALLOWED_ORIGINS: $ALLOWED_ORIGINS
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - spring-boot-mysql-network
+    restart: on-failure
+  db:
+    image: hsheth2/mysql-low-memory
+    environment:
+      - MYSQL_DATABASE=main
+      - MYSQL_ROOT_PASSWORD=$SPRING_DATASOURCE_PASSWORD
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - spring-boot-mysql-network
+    ports:
+      - "3306:3306"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_ARBITRARY: 1
+    restart: always
+    deploy:
+      resources:
+        limits:
+          memory: 50M
+    networks:
+      - spring-boot-mysql-network
+    ports:
+      - "8081:80"
+networks:
+  spring-boot-mysql-network:
+    driver: bridge
+volumes:
+  db_data:
+    driver: local

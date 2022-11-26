@@ -1,0 +1,47 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/dev?autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true&createDatabaseIfNotExist=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: dev
+  jpa:
+    database: mysql
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+
+logging:
+  level:
+    carlos:
+      molero:
+        debtcontrol: DEBUG
+    web: TRACE
+
+custom:
+  users:
+    - fullName: Albert Willeth
+      password: 123
+      email: albert@albert.com
+      avatarUrl: https://images.unsplash.com/photo-1565464027194-7957a2295fb7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80
+    - fullName: Sarah Smith
+      password: 123
+      email: sarah@sarah.com
+      avatarUrl: https://images.unsplash.com/photo-1479936343636-73cdc5aae0c3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80
+    - fullName: Freddy Amon
+      email: freddy@freddy.com
+      password: 123
+      avatarUrl: https://images.unsplash.com/photo-1527980965255-d3b416303d12?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2080&q=80
+    - fullName: Donna Haargreeves
+      email: donna@donna.com
+      password: 123
+      avatarUrl: https://images.unsplash.com/photo-1611367540679-d94566094025?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2080&q=80
+  access-token-secret: 7Q8RATBUCWEXFYH2J3K5N6P7Q9SATBVDWEXGZH2J4M5N6Q8R9SBUCVDXFY
+  access-token-expiration-days: 7
+  allowed-origins: ["http://localhost:3000"]

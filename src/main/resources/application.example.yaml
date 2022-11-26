@@ -1,0 +1,32 @@
+spring:
+  datasource:
+    url: <YOUR_DB_URL>
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: <YOUR_DB_USER>
+    password: <YOUR_DB_PASSWORD>
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+logging:
+  level:
+    carlos:
+      molero:
+        debtcontrol: DEBUG
+    web: TRACE
+
+custom:
+  users:
+    # - username:
+    #   password:
+    #   email:
+    #   avatarUrl:
+  access-token-secret: <PUT_A_258_KEY_SECRET_HERE>
+  access-token-expiration-days: <EXPIRATION_TIME_IN_DAYS>
+  allowed-origins: <CORS_ALLOWED_DOMAINS_OR_ADDRESSES>

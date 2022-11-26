@@ -1,0 +1,40 @@
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+  jpa:
+    database: mysql
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+server:
+  error:
+    include-message: always
+
+logging:
+  level:
+    carlos:
+      molero:
+        debtcontrol: DEBUG
+    web: TRACE
+
+custom:
+  users:
+    - fullName: Carlos Molero Mata
+      password: ${USER1_PASSWORD}
+      email: ${USER1_EMAIL}
+      avatarUrl: https://learning.royalbcmuseum.bc.ca/wp-content/uploads/2020/09/rtx15lnf.jpg
+    - fullName: Elena Díaz Sanchez
+      password: ${USER2_PASSWORD}
+      email: ${USER2_EMAIL}
+      avatarUrl: https://i.chzbgr.com/full/9621957376/hE681298D/raccoon
+  access-token-secret: ${ACCESS_TOKEN_SECRET}
+  access-token-expiration-days: ${ACCESS_TOKEN_EXPIRATION_DAYS}
+  allowed-origins: ${ALLOWED_ORIGINS}
