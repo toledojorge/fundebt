@@ -18,8 +18,9 @@ const theme = extendTheme({
   },
 });
 
-export const nonChakraTheme = {
+export const chakraTheme = {
   colors: {
+    primary: "#A042E4",
     ok: "#38A169",
     error: "#E53E3E",
   },

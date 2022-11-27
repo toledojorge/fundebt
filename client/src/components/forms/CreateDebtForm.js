@@ -1,5 +1,4 @@
 import {
-  Text,
   FormControl,
   FormLabel,
   Input,
@@ -13,6 +12,7 @@ import LoadingButton from "../LoadingButton";
 import { useState } from "react";
 import { AddIcon } from "@chakra-ui/icons";
 import useAccessToken from "../../hooks/useAccessToken";
+import { chakraTheme } from "../../theme.js";
 
 export default function CreateDebtForm({ onSuccess, debtUserId }) {
   const accessToken = useAccessToken();
@@ -55,11 +55,20 @@ export default function CreateDebtForm({ onSuccess, debtUserId }) {
       <Heading size="md">Create a new debt</Heading>
       <FormControl mt={5}>
         <FormLabel>Amount ({CURRENCY})</FormLabel>
-        <Input name="amount" step="0.01" type="number" />
+        <Input
+          focusBorderColor={chakraTheme.colors.primary}
+          name="amount"
+          step="0.01"
+          type="number"
+        />
       </FormControl>
       <FormControl mt={3}>
         <FormLabel>Description</FormLabel>
-        <Input name="description" type="text" />
+        <Input
+          focusBorderColor={chakraTheme.colors.primary}
+          name="description"
+          type="text"
+        />
       </FormControl>
       {error && (
         <Alert mt={3} status="error">

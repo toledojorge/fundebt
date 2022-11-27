@@ -26,6 +26,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { add as addAuthUser } from "../store/slices/authUser";
 import { add as addAccessToken } from "../store/slices/accessToken.js";
+import { chakraTheme } from "../theme.js";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -124,7 +125,13 @@ export default function Home() {
             <Box mt={5}>
               <FormControl mb={2}>
                 <FormLabel>Email</FormLabel>
-                <Input value={menuValue} name="email" type="text" readOnly />
+                <Input
+                  focusBorderColor={chakraTheme.colors.primary}
+                  value={menuValue}
+                  name="email"
+                  type="text"
+                  readOnly
+                />
                 <FormHelperText mb={3}>
                   This field is disabled, please use the above selector to fill
                   it with the email of the selected user
@@ -132,7 +139,11 @@ export default function Home() {
               </FormControl>
               <FormControl>
                 <FormLabel>Password</FormLabel>
-                <Input name="password" type="password" />
+                <Input
+                  focusBorderColor={chakraTheme.colors.primary}
+                  name="password"
+                  type="password"
+                />
               </FormControl>
             </Box>
             {error && (

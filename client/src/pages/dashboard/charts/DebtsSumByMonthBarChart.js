@@ -26,7 +26,7 @@ export default function DebtsSumByMonthBarChart({ chartData }) {
       <BarChart
         width="100%"
         height="50%"
-        options={getBarChartOptions("Debts by month")}
+        options={getBarChartOptions("")}
         data={chartData}
       />
     </Box>

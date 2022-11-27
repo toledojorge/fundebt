@@ -13,7 +13,6 @@ import {
   IconButton,
   Badge,
   Text,
-  FormLabel,
 } from "@chakra-ui/react";
 import {
   ArrowForwardIcon,
@@ -25,6 +24,7 @@ import {
   EDEBT_ORDER_BY,
   EDEBT_ORDER_DIRECTION,
 } from "../../enums.js";
+import { chakraTheme } from "../../theme.js";
 
 const selects = [
   {
@@ -165,6 +165,7 @@ export default function DashboardActions({
             </Heading>
             <FormControl display="flex" alignItems="center">
               <Select
+                focusBorderColor={chakraTheme.colors.primary}
                 onChange={(e) =>
                   onFilterChange({
                     ...filters,

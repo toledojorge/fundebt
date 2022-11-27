@@ -39,7 +39,7 @@ import {
 import DebtsSumByMonthBarChart from "./charts/DebtsSumByMonthBarChart.js";
 import { rawToChartDataset } from "../../utils/charts.js";
 import { getSumByMonth as getDebtsSumByMonth } from "../../api/debts";
-import { nonChakraTheme } from "../../theme.js";
+import { chakraTheme } from "../../theme.js";
 import { getBarChartDatasets } from "../../utils/charts.js";
 
 export default function Dashboard() {
@@ -150,8 +150,8 @@ export default function Dashboard() {
         "Owed to you",
         rawToChartDataset(data.owedByPrincipal),
         rawToChartDataset(data.owedToPrincipal),
-        nonChakraTheme.colors.error,
-        nonChakraTheme.colors.ok
+        chakraTheme.colors.error,
+        chakraTheme.colors.ok
       ),
     });
   }

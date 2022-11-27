@@ -7,13 +7,17 @@ import {
   remove as removeAuthUser,
 } from "./store/slices/authUser";
 import { remove as removeAccessToken } from "./store/slices/accessToken.js";
-import { useEffect } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPrincipal as getPrincipalUser } from "./api/users.js";
 import useAccessToken from "./hooks/useAccessToken.js";
+import PuffLoader from "react-spinners/PuffLoader.js";
+import { chakraTheme } from "./theme.js";
+import { Center } from "@chakra-ui/react";
 
 function App() {
   const authUser = useSelector((state) => state.au.v);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const accessToken = useAccessToken();
@@ -37,24 +41,35 @@ function App() {
         if (data) {
           dispatch(addAuthUser(data));
           navigate("/dashboard");
+          setIsLoading(false);
           return;
         }
       }
+      setIsLoading(false);
     })();
   }, []);
 
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route
-        path="/dashboard"
-        element={
-          <ProtectedRoute authUser={authUser}>
-            <Dashboard />
-          </ProtectedRoute>
-        }
-      />
-    </Routes>
+    <Fragment>
+      {isLoading && (
+        <Center height="100vh">
+          <PuffLoader color={chakraTheme.colors.primary} />
+        </Center>
+      )}
+      {!isLoading && (
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute authUser={authUser}>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      )}
+    </Fragment>
   );
 }
 

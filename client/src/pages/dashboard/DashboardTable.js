@@ -8,7 +8,6 @@ import {
   Badge,
   Checkbox,
   Center,
-  Spinner,
   Text,
   Table,
   Tooltip,
@@ -17,6 +16,8 @@ import { InfoIcon } from "@chakra-ui/icons";
 import { CURRENCY } from "../../config";
 import { Fragment, useState } from "react";
 import { truncate2decimals } from "../../utils/format.js";
+import SyncLoader from "react-spinners/SyncLoader.js";
+import { chakraTheme } from "../../theme.js";
 
 export default function DashboardTable({
   loading,
@@ -55,7 +56,6 @@ export default function DashboardTable({
                     {d.reductionAmount !== 0 && (
                       <Fragment>
                         <Badge
-                          minWidth="40px"
                           onClick={() => {
                             setToolTipDebtId(
                               toolTipDebtId === d.id ? -1 : d.id
@@ -94,7 +94,7 @@ export default function DashboardTable({
                     )}
                   </Td>
                   <Td>
-                    <Badge minWidth="50px" colorScheme="purple">
+                    <Badge colorScheme="purple">
                       {new Date(d.createdAt).toLocaleDateString()}
                     </Badge>
                   </Td>
@@ -122,8 +122,8 @@ export default function DashboardTable({
         </Table>
       )}
       {loading && (
-        <Center>
-          <Spinner color="blue.500" size="xl" />
+        <Center minHeight="200px">
+          <SyncLoader color={chakraTheme.colors.primary} />
         </Center>
       )}
     </TableContainer>
